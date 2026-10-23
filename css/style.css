@@ -604,6 +604,7 @@ body.is-ready .hero__media img { transform: scale(1.04); }
   max-width: 1440px; margin: 0 auto 70px;
 }
 .footer__brand img { width: 74px; margin-bottom: 18px; }
+.footer__big, .footer__brand p { display: none; }
 .footer__brand p { font-size: 13px; color: var(--muted); max-width: 220px; margin: 0; }
 .footer h5 { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; font-weight: 600; margin: 0 0 18px; }
 .footer ul { list-style: none; margin: 0; padding: 0; }
