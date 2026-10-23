@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/logo-white.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="is-loading">
@@ -18,8 +19,9 @@
   <img src="img/logo-white.png" alt="">
   <div class="loader__bar"><span></span></div>
 </div>
-<div class="cursor" aria-hidden="true"></div>
-<div class="cursor__label" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true">
+  <svg viewBox="0 0 64 16" width="56" height="14"><path d="M8 4.5 H56 a3.5 3.5 0 0 1 0 7 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="4.5" r="1.8" fill="currentColor"/><circle cx="7" cy="11.5" r="1.8" fill="currentColor"/></svg>
+</div>
 <header class="header">
   <div class="header__inner">
     <nav class="nav" aria-label="Glavna navigacija">
@@ -60,7 +62,7 @@
     <img src="img/hero.jpg" alt="Karla češlja dugu tamnu kosu klijentice u salonu">
   </div>
   <div class="hero__content">
-    <h1 class="hero__title" data-split data-hero>Kosa koja izgleda<br>kao ti, samo bolje</h1>
+    <h1 class="hero__title" data-split data-hero>Mjesto gdje je svaki termin<br>iskustvo za sebe</h1>
     <p class="hero__sub reveal" data-hero>Frizerski salon · Rijeka</p>
     <a class="hero__cta reveal" data-hero href="#usluge" data-cursor="Usluge">
       Pogledaj usluge
@@ -95,21 +97,10 @@
   </figure>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <span>Hair <i>✦</i> Bridal <i>✦</i> Pletenice <i>✦</i> Edukacije <i>✦</i> Rijeka <i>✦</i></span>
-    <span>Hair <i>✦</i> Bridal <i>✦</i> Pletenice <i>✦</i> Edukacije <i>✦</i> Rijeka <i>✦</i></span>
-    <span>Hair <i>✦</i> Bridal <i>✦</i> Pletenice <i>✦</i> Edukacije <i>✦</i> Rijeka <i>✦</i></span>
-    <span>Hair <i>✦</i> Bridal <i>✦</i> Pletenice <i>✦</i> Edukacije <i>✦</i> Rijeka <i>✦</i></span>
-  </div>
-</div>
-
 <!-- USLUGE -->
 <section class="services" id="usluge">
   <div class="services__head">
     <div>
-      <p class="eyebrow reveal">Što radimo</p>
       <h2 class="h-section" data-split style="margin:0">Usluge</h2>
     </div>
     <a class="link-line reveal" href="usluge.html">Sve usluge</a>
@@ -151,7 +142,7 @@
   <div class="gallery__grid">
     <a class="gallery__item" href="galerija.html#hair" data-cursor="Pogledaj">
       <div class="gallery__img img-reveal"><img src="img/galerija-hair.jpg" alt="Šišanje ravnog boba" loading="lazy"></div>
-      <div class="gallery__cap reveal"><small>Hair</small><h3>Boja i rez</h3></div>
+      <div class="gallery__cap reveal"><small>Hair</small><h3>Bojanje i oblikovanje</h3></div>
     </a>
     <a class="gallery__item" href="galerija.html#bridal" data-cursor="Pogledaj">
       <div class="gallery__img img-reveal" data-delay="1"><img src="img/galerija-bridal.jpg" alt="Mladenci plešu, crno-bijela fotografija" loading="lazy"></div>
@@ -159,7 +150,7 @@
     </a>
     <a class="gallery__item" href="galerija.html#pletenice" data-cursor="Pogledaj">
       <div class="gallery__img img-reveal" data-delay="2"><img src="img/galerija-pletenice.jpg" alt="Izrada dugih kovrčavih pletenica" loading="lazy"></div>
-      <div class="gallery__cap reveal" data-delay="2"><small>Details</small><h3>Pletenice</h3></div>
+      <div class="gallery__cap reveal" data-delay="2"><small>Something different</small><h3>Pletenice</h3></div>
     </a>
   </div>
 </section>
@@ -185,7 +176,12 @@
       <p class="eyebrow reveal">Google recenzije</p>
       <h2 class="reviews__title" data-split>Recenzije klijenata</h2>
     </div>
-    <div class="rating reveal" data-delay="1">
+  </div>
+  <div class="reviews__rail" data-cursor="Povuci">
+    <div class="reviews__track" data-reviews></div>
+  </div>
+  <div class="reviews__foot">
+    <div class="rating reveal">
       <span class="rating__num"><span data-count="5" data-decimals="1">0</span></span>
       <div class="rating__meta">
         <div class="stars">★★★★★</div>
@@ -193,9 +189,6 @@
         <a href="https://www.google.com/maps/place/Hair+By+Karla+Beni%C4%87/@45.3543269,14.3693448,17z/data=!4m8!3m7!1s0x4764a7f9abbe3a27:0x3bedb92742ab3d34!8m2!3d45.3543269!4d14.3693448!9m1!1b1" target="_blank" rel="noopener">Pročitajte sve</a>
       </div>
     </div>
-  </div>
-  <div class="reviews__rail" data-cursor="Povuci">
-    <div class="reviews__track" data-reviews></div>
   </div>
 </section>
 
@@ -239,11 +232,9 @@
 
 </main>
 <footer class="footer">
-  <div class="footer__big reveal" aria-hidden="true">Hair by Karla Benić</div>
   <div class="footer__grid">
     <div class="footer__brand">
       <img src="img/logo-dark.png" alt="Hair by Karla Benić">
-      <p>Frizerski salon u Rijeci. Kosa s pažnjom, mirom i puno ljubavi prema detaljima.</p>
     </div>
     <div>
       <h5>Usluge</h5>

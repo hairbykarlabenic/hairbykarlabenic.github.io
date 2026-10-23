@@ -171,24 +171,28 @@
     window.scrollTo({ top: id === '#top' ? 0 : t.getBoundingClientRect().top + window.scrollY - 60, behavior: reduce ? 'auto' : 'smooth' });
   }));
 
-  /* ---------- prilagođeni kursor ---------- */
+  /* ---------- kursor: ukosnica ---------- */
   if (fine && !reduce) {
-    const cur = $('.cursor'), lab = $('.cursor__label');
+    const cur = $('.cursor');
+    document.documentElement.classList.add('has-pin-cursor');
     let x = -100, y = -100, cx = x, cy = y;
-    window.addEventListener('mousemove', e => { x = e.clientX; y = e.clientY; });
+    window.addEventListener('mousemove', e => { x = e.clientX; y = e.clientY; cur.classList.add('is-on'); });
+    document.addEventListener('mouseleave', () => cur.classList.remove('is-on'));
+    window.addEventListener('mousedown', () => cur.classList.add('is-down'));
+    window.addEventListener('mouseup', () => cur.classList.remove('is-down'));
     const loop = () => {
-      cx += (x - cx) * 0.2; cy += (y - cy) * 0.2;
-      cur.style.transform = `translate3d(${cx - 4}px, ${cy - 4}px, 0)`;
-      lab.style.transform = `translate3d(${x + 18}px, ${y + 14}px, 0)`;
+      cx += (x - cx) * 0.35; cy += (y - cy) * 0.35;
+      cur.style.transform = `translate3d(${cx - 3}px, ${cy}px, 0)`;
       requestAnimationFrame(loop);
     };
     loop();
     $$('a, button, [data-cursor]').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cur.classList.add('is-hover');
-        if (el.dataset.cursor) { lab.textContent = el.dataset.cursor; lab.classList.add('is-on'); }
-      });
-      el.addEventListener('mouseleave', () => { cur.classList.remove('is-hover'); lab.classList.remove('is-on'); });
+      el.addEventListener('mouseenter', () => cur.classList.add('is-hover'));
+      el.addEventListener('mouseleave', () => cur.classList.remove('is-hover'));
+    });
+    $$('iframe').forEach(f => {
+      f.addEventListener('mouseenter', () => { cur.classList.remove('is-on'); document.documentElement.classList.remove('has-pin-cursor'); });
+      f.addEventListener('mouseleave', () => document.documentElement.classList.add('has-pin-cursor'));
     });
 
     // magnetni gumbi

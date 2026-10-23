@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/logo-white.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="is-loading">
@@ -18,8 +19,9 @@
   <img src="img/logo-white.png" alt="">
   <div class="loader__bar"><span></span></div>
 </div>
-<div class="cursor" aria-hidden="true"></div>
-<div class="cursor__label" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true">
+  <svg viewBox="0 0 64 16" width="56" height="14"><path d="M8 4.5 H56 a3.5 3.5 0 0 1 0 7 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6 c-2 0 -2 -2.6 -4 -2.6 s-2 2.6 -4 2.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="4.5" r="1.8" fill="currentColor"/><circle cx="7" cy="11.5" r="1.8" fill="currentColor"/></svg>
+</div>
 <header class="header">
   <div class="header__inner">
     <nav class="nav" aria-label="Glavna navigacija">
@@ -69,11 +71,9 @@
 </section>
 </main>
 <footer class="footer">
-  <div class="footer__big reveal" aria-hidden="true">Hair by Karla Benić</div>
   <div class="footer__grid">
     <div class="footer__brand">
       <img src="img/logo-dark.png" alt="Hair by Karla Benić">
-      <p>Frizerski salon u Rijeci. Kosa s pažnjom, mirom i puno ljubavi prema detaljima.</p>
     </div>
     <div>
       <h5>Usluge</h5>
