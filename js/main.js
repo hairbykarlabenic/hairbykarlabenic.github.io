@@ -255,5 +255,22 @@
   }
 
   /* ---------- godina u podnožju ---------- */
-  $$('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+  $('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+
+  /* ---------- optičko poravnanje lijevo (veliki naslovi i sitni nadnaslovi u istoj liniji) ---------- */
+  const alignOptical = () => {
+    const ctx = document.createElement('canvas').getContext('2d');
+    $('h1, h2, h3, .eyebrow').forEach(el => {
+      const cs = getComputedStyle(el);
+      if (!/^(left|start)$/.test(cs.textAlign)) { el.style.marginLeft = ''; return; }
+      const ch = (el.textContent || '').trim().charAt(0);
+      if (!ch) return;
+      ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      const tf = cs.textTransform === 'uppercase' ? ch.toUpperCase() : ch;
+      const bearing = -ctx.measureText(tf).actualBoundingBoxLeft; // razmak od ruba do slova
+      el.style.marginLeft = bearing > 0 ? `-${bearing.toFixed(2)}px` : '';
+    });
+  };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(alignOptical);
+  let alT; window.addEventListener('resize', () => { clearTimeout(alT); alT = setTimeout(alignOptical, 150); });
 })();
