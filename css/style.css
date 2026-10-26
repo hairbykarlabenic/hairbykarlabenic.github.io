@@ -297,7 +297,7 @@ body.is-ready .hero__media img { transform: scale(1.04); }
 .hero__content {
   position: absolute; left: 0; right: 0; bottom: 0;
   z-index: 2;
-  display: flex; flex-direction: column; align-items: center; text-align: center;
+  display: flex; flex-direction: column; align-items: flex-start; text-align: left;
   padding: 0 var(--pad) 46px;
 }
 .hero__title {
@@ -688,29 +688,25 @@ body.is-ready .page-hero img { transform: scale(1.02); }
    BRIDAL ALBUM
    ========================================================== */
 .album {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: clamp(16px, 2.4vw, 40px);
-  row-gap: clamp(40px, 5vw, 80px);
-  max-width: 1600px; margin: 0 auto;
-  padding: clamp(60px, 8vw, 120px) var(--pad) clamp(60px, 8vw, 120px);
-  align-items: start;
+  max-width: 1800px; margin: 0 auto;
+  padding: clamp(90px, 11vw, 180px) var(--pad) clamp(80px, 9vw, 140px);
+  display: flex; flex-direction: column; gap: clamp(36px, 4.5vw, 72px);
 }
+.album__row { display: grid; gap: clamp(14px, 1.6vw, 26px); align-items: start; }
+.album__row.r1 { grid-template-columns: 1fr; }
+.album__row.r2 { grid-template-columns: repeat(2, 1fr); }
+.album__row.r3 { grid-template-columns: repeat(3, 1fr); }
+.album__row.r4 { grid-template-columns: repeat(4, 1fr); }
 .album__item { margin: 0; cursor: zoom-in; }
-.album__img { overflow: hidden; }
-.album__img img { width: 100%; height: auto; display: block; transition: transform 1.4s var(--ease), filter .8s; }
-.album__item:hover .album__img img { transform: scale(1.04); }
+.album__img { overflow: hidden; aspect-ratio: 4 / 5; background: #f1efec; }
+.album__row.r4 .album__img { aspect-ratio: 2 / 3; }
+.album__row.r1 .album__img { aspect-ratio: 3 / 2; }
+.album__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.4s var(--ease); }
+.album__item:hover .album__img img { transform: scale(1.03); }
 .album figcaption {
   margin-top: 12px;
   font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted);
 }
-.a0 { grid-column: 1 / 8; }
-.a1 { grid-column: 8 / 13; margin-top: clamp(80px, 14vw, 240px); }
-.a2 { grid-column: 2 / 7; }
-.a3 { grid-column: 7 / 13; margin-top: clamp(60px, 9vw, 160px); }
-.a4 { grid-column: 1 / 6; margin-top: clamp(40px, 6vw, 100px); }
-.a5 { grid-column: 6 / 13; }
-.album__item.is-land { grid-column: 1 / 13; margin-top: 0; }
 
 .lightbox {
   position: fixed; inset: 0; z-index: 250;
@@ -730,10 +726,11 @@ body.lightbox-open { overflow: hidden; }
 body.lightbox-open .cursor { color: #fff; }
 
 @media (max-width: 760px) {
-  .album { grid-template-columns: repeat(12, 1fr); row-gap: 36px; padding-top: 36px; }
-  .album__item { grid-column: 1 / 11 !important; margin-top: 0 !important; }
-  .album__item:nth-child(even) { grid-column: 3 / 13 !important; }
-  .album__item.is-land { grid-column: 1 / 13 !important; }
+  .album { padding-top: 70px; gap: 28px; }
+  .album__row.r2, .album__row.r3, .album__row.r4 { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+  .album__row.r3 > :first-child { grid-column: 1 / -1; }
+  .album__row.r3 > :first-child .album__img { aspect-ratio: 4 / 5; }
+  .album figcaption { font-size: 8.5px; letter-spacing: .16em; margin-top: 8px; }
   .lightbox { grid-template-columns: 44px 1fr 44px; }
   .page-hero__credit { right: auto; left: var(--pad); bottom: 14px; }
 }
