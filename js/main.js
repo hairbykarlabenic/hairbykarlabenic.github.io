@@ -229,6 +229,31 @@
     openEl.querySelector('span').textContent = open ? 'Sada otvoreno' : 'Trenutno zatvoreno';
   }
 
+  /* ---------- lightbox za album ---------- */
+  const lb = $('.lightbox');
+  if (lb) {
+    const items = $$('.album__item');
+    const img = $('img', lb), cap = $('figcaption', lb);
+    let idx = 0;
+    const show = i => {
+      idx = (i + items.length) % items.length;
+      img.src = items[idx].dataset.full; cap.textContent = items[idx].dataset.cap || '';
+    };
+    const open = i => { show(i); lb.classList.add('is-open'); lb.setAttribute('aria-hidden', 'false'); document.body.classList.add('lightbox-open'); };
+    const close = () => { lb.classList.remove('is-open'); lb.setAttribute('aria-hidden', 'true'); document.body.classList.remove('lightbox-open'); };
+    items.forEach((it, i) => it.addEventListener('click', () => open(i)));
+    $('.lightbox__close', lb).addEventListener('click', close);
+    $('.lightbox__prev', lb).addEventListener('click', e => { e.stopPropagation(); show(idx - 1); });
+    $('.lightbox__next', lb).addEventListener('click', e => { e.stopPropagation(); show(idx + 1); });
+    lb.addEventListener('click', e => { if (e.target === lb || e.target.tagName === 'FIGURE') close(); });
+    window.addEventListener('keydown', e => {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowRight') show(idx + 1);
+      if (e.key === 'ArrowLeft') show(idx - 1);
+    });
+  }
+
   /* ---------- godina u podnožju ---------- */
   $$('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 })();
