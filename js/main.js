@@ -255,12 +255,12 @@
   }
 
   /* ---------- godina u podnožju ---------- */
-  $('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+  $$('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 
   /* ---------- optičko poravnanje lijevo (veliki naslovi i sitni nadnaslovi u istoj liniji) ---------- */
   const alignOptical = () => {
     const ctx = document.createElement('canvas').getContext('2d');
-    $('h1, h2, h3, .eyebrow').forEach(el => {
+    $$('h1, h2, h3, .eyebrow').forEach(el => {
       const cs = getComputedStyle(el);
       if (!/^(left|start)$/.test(cs.textAlign)) { el.style.marginLeft = ''; return; }
       const ch = (el.textContent || '').trim().charAt(0);
