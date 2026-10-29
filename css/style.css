@@ -774,6 +774,7 @@ body.is-ready .page-hero img { transform: scale(1.02); }
   .map__consent { bottom: auto; height: 340px; }
   .footer__legal { flex-direction: column; }
   .footer__company span { display: block; }
+  .footer__company br { display: none; }
   .footer__company span::before { content: none; }
   .about__counter { gap: 28px; }
 }
