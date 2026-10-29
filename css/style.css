@@ -152,7 +152,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .cursor {
   position: fixed; top: 0; left: 0;
   pointer-events: none;
-  z-index: 300;
+  z-index: 1000;
   color: var(--ink);
   transform: translate3d(-100px, -100px, 0);
   opacity: 0;
@@ -691,7 +691,7 @@ body.is-ready .page-hero img { transform: scale(1.02); }
 .legal table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0 20px; }
 .legal th, .legal td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-soft); }
 .legal th { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
-.legal .btn { margin-top: 10px; text-decoration: none; }
+.legal .btn { margin-top: 10px; text-decoration: none; transform: none !important; }
 
 /* ==========================================================
    KOLAČIĆI – traka i postavke
