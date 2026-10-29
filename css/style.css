@@ -558,12 +558,11 @@ body.is-ready .hero__media img { transform: scale(1.04); }
    POSJETITE SALON + KARTA
    ========================================================== */
 .visit {
-  display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(30px, 6vw, 100px);
-  align-items: center;
+  display: grid; grid-template-columns: 1fr; justify-items: center; text-align: center;
   padding: clamp(80px, 10vw, 150px) var(--pad) clamp(50px, 6vw, 90px);
   max-width: 1440px; margin: 0 auto;
 }
-.visit__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
+.visit__cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 90px); margin: 0 auto 40px; justify-items: center; }
 .visit__cols h4 { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin: 0 0 12px; }
 .visit__cols p, .visit__cols address { font-style: normal; margin: 0; font-size: 15px; color: var(--ink-soft); line-height: 1.9; }
 .visit__cols a:hover { color: var(--ink); }
