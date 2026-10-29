@@ -13,6 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/logo-white.png">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/consent.js"></script>
 </head>
 <body class="is-loading">
 <div class="loader" aria-hidden="true">
@@ -228,7 +229,11 @@
 <!-- KARTA -->
 <div class="map reveal">
   <iframe title="Karta – Hair by Karla Benić, Rijeka" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-    src="https://www.google.com/maps?q=Hair+By+Karla+Beni%C4%87,+Ul.+Miroslava+Krle%C5%BEe+3,+51000+Rijeka&amp;z=16&amp;output=embed"></iframe>
+    data-consent-src="https://www.google.com/maps?q=Hair+By+Karla+Beni%C4%87,+Ul.+Miroslava+Krle%C5%BEe+3,+51000+Rijeka&amp;z=16&amp;output=embed"></iframe>
+  <div class="map__consent">
+    <p>Karta se prikazuje putem Google Mapsa, koji može postaviti svoje kolačiće.</p>
+    <button type="button" class="btn btn--line" data-map-load>Prikaži kartu</button>
+  </div>
   <div class="map__card">
     <h4>Hair by Karla Benić</h4>
     <p>ul. Miroslava Krleže 3, 51000 Rijeka<br>Besplatan parking ispred salona.</p>
@@ -276,13 +281,19 @@
     </div>
     <div>
       <h5>Pratite</h5>
-      <ul>
-        <li><a href="https://www.instagram.com/hairbykarlabenic/" target="_blank" rel="noopener">@hairbykarlabenic</a></li>
-      </ul>
+      <a class="footer__social" href="https://www.instagram.com/hairbykarlabenic/" target="_blank" rel="noopener" aria-label="Instagram – @hairbykarlabenic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9" fill="currentColor" stroke="none"/></svg></a>
     </div>
   </div>
+  <div class="footer__legal">
+    <p class="footer__company">VINTAGE d.o.o.<span>Dražice Zamet 138A, 51000 Rijeka</span><span>OIB: 36316496241</span><br>Trgovački sud u Rijeci, MBS: 040338864<span>Članovi uprave: Marin Benić, Karla Benić</span></p>
+    <ul class="footer__links">
+      <li><a href="pravila-privatnosti.html">Pravila privatnosti</a></li>
+      <li><a href="politika-kolacica.html">Politika kolačića</a></li>
+      <li><a href="#" data-cookie-settings>Postavke kolačića</a></li>
+    </ul>
+  </div>
   <div class="footer__bottom">
-    <span>© <span data-year>2026</span> Hair by Karla Benić</span>
+    <span>© <span data-year>2026</span> Hair by Karla Benić · VINTAGE d.o.o.</span>
     <a href="#top" class="to-top" data-cursor="Vrh">Na vrh
       <svg width="10" height="12" viewBox="0 0 10 12" fill="none"><path d="M5 11V1M1 5l4-4 4 4" stroke="currentColor"/></svg>
     </a>
