@@ -634,7 +634,8 @@ body.is-ready .hero__media img { transform: scale(1.04); }
 .footer li { margin-bottom: 10px; }
 .footer li a { font-size: 13px; color: var(--ink-soft); position: relative; transition: color .3s; }
 .footer li a:hover { color: var(--ink); }
-.footer__social { display: inline-flex; color: var(--ink-soft); transition: color .3s, transform .4s var(--ease); }
+.footer__socials { display: flex; align-items: center; gap: 14px; }
+.footer__social { display: inline-flex; align-items: center; color: var(--ink-soft); transition: color .3s, transform .4s var(--ease); }
 .footer__social:hover { color: var(--ink); transform: translateY(-2px); }
 .footer__legal {
   max-width: 1440px; margin: 0 auto 26px; padding-top: 26px; border-top: 1px solid var(--line);
