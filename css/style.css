@@ -899,3 +899,7 @@ body.lightbox-open .cursor { color: #fff; }
 .album--salon { padding-top: clamp(50px, 6vw, 90px); }
 .salon-note { max-width: 720px; margin: clamp(40px, 6vw, 90px) auto; text-align: center; padding: 0 var(--pad); }
 .salon-note__quote { font-size: clamp(19px, 1.9vw, 26px); line-height: 1.6; font-weight: 300; color: var(--ink); letter-spacing: .005em; }
+.fht { padding-top: clamp(30px, 4vw, 60px); }
+.fht__media { display: block; position: relative; overflow: hidden; }
+.fht__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; transition: transform 1.4s var(--ease); }
+.album--tail { padding-top: 0; }
