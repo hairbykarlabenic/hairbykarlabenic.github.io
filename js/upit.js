@@ -6,7 +6,7 @@
   const MONTHS = ['siječanj','veljača','ožujak','travanj','svibanj','lipanj','srpanj','kolovoz','rujan','listopad','studeni','prosinac'];
   const MONTHS_GEN = ['siječnja','veljače','ožujka','travnja','svibnja','lipnja','srpnja','kolovoza','rujna','listopada','studenoga','prosinca'];
   const DAYS = ['nedjelja','ponedjeljak','utorak','srijeda','četvrtak','petak','subota'];
-  const state = { type: '', date: null, time: '', loc: '', place: '', n: 1, name: '', tel: '', note: '' };
+  const state = { kind: '', type: '', date: null, time: '', loc: '', place: '', n: 1, name: '', tel: '', note: '' };
   const $ = s => root.querySelector(s), $$ = s => [...root.querySelectorAll(s)];
 
   /* ---------- odabir pilula ---------- */
@@ -16,8 +16,12 @@
       g.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
       state[g.dataset.group] = b.dataset.val;
       if (g.dataset.group === 'type') {
-        const lbl = { 'vjenčanje': 'Datum vjenčanja', 'probnu frizuru': 'Željeni datum probe' }[b.dataset.val] || 'Datum';
-        $('[data-date-label]').textContent = lbl;
+        state.kind = b.dataset.kind;
+        const ev = state.kind === 'event';
+        $('[data-date-label]').textContent = ({ 'vjenčanje': 'Datum vjenčanja', 'probnu frizuru': 'Željeni datum probe' })[b.dataset.val] || (ev ? 'Datum' : 'Koji datum vam odgovara?');
+        $('[data-time-label]').textContent = ev ? 'Do kada trebate biti spremni?' : 'Koje vrijeme vam odgovara?';
+        $('[data-event-only]').hidden = !ev;
+        let i = 1; $$('.upit__step').forEach(st => { if (!st.hidden) st.querySelector('.upit__no').textContent = String(i++).padStart(2, '0'); });
       }
       if (g.dataset.group === 'loc') $('[data-place]').hidden = b.dataset.val !== 'na lokaciji';
       g.closest('.upit__step').classList.remove('is-missing');
@@ -71,37 +75,41 @@
   /* ---------- pismo ---------- */
   const fmtDate = d => DAYS[d.getDay()] + ', ' + d.getDate() + '. ' + MONTHS_GEN[d.getMonth()] + ' ' + d.getFullYear() + '.';
   const osobe = n => n + (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? ' osobe' : ' osoba');
-  const fill = (k, v) => { const el = $('[data-l="' + k + '"]'); el.textContent = v || ''; el.classList.toggle('is-empty', !v); };
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const v = t => t ? '<span>' + esc(t) + '</span>' : '<span class="is-empty"></span>';
+  const locTxt = () => state.loc === 'na lokaciji' ? 'na lokaciji' + (state.place ? ' (' + state.place + ')' : '') : state.loc;
   function render() {
-    fill('name', state.name);
-    fill('type', state.type);
-    fill('date', state.date ? fmtDate(state.date) : '');
-    fill('time', state.time);
-    const loc = state.loc === 'na lokaciji' ? ('na lokaciji' + (state.place ? ' (' + state.place + ')' : '')) : state.loc;
-    fill('loc', loc);
-    fill('n', osobe(state.n));
+    const d = state.date ? fmtDate(state.date) : '';
+    let h = 'Bok Karla, ja sam ' + v(state.name) + '. Javljam se za ' + v(state.type);
+    if (state.kind === 'salon') {
+      h += '. ' + (d || state.time ? 'Odgovarao bi mi termin ' + (d ? v(d) : '') + (state.time ? ' oko ' + v(state.time) : '') + '.' : 'Termin dogovaramo naknadno.');
+    } else {
+      h += ', ' + v(d) + ' Trebam biti spremna do ' + v(state.time) + ', ' + v(locTxt()) + ', za ' + v(osobe(state.n)) + '.';
+    }
+    h += ' Možete me kontaktirati na ' + v(state.tel) + '.';
+    $('[data-letter]').innerHTML = h;
     const note = $('[data-l-note]'); note.textContent = state.note; note.hidden = !state.note;
   }
   render();
 
   function message() {
-    const loc = state.loc === 'na lokaciji' ? 'na lokaciji' + (state.place ? ' (' + state.place + ')' : '') : (state.loc || 'još ne znam');
+    const ev = state.kind !== 'salon';
     return [
       'Bok Karla! Ja sam ' + state.name + '.',
       'Javljam se za ' + state.type + '.',
-      'Datum: ' + fmtDate(state.date),
-      'Trebam biti spremna do: ' + (state.time || 'još ne znam'),
-      'Mjesto: ' + loc,
-      'Broj osoba: ' + state.n,
+      state.date ? (ev ? 'Datum: ' : 'Odgovara mi datum: ') + fmtDate(state.date) : '',
+      state.time ? (ev ? 'Trebam biti spremna do: ' : 'Odgovara mi oko: ') + state.time : '',
+      ev ? 'Mjesto: ' + (locTxt() || 'još ne znam') : '',
+      ev ? 'Broj osoba: ' + state.n : '',
       state.note ? 'Napomena: ' + state.note : '',
-      state.tel ? 'Moj broj: ' + state.tel : ''
+      'Kontakt: ' + state.tel
     ].filter(Boolean).join('\n');
   }
   function valid() {
     const miss = [];
     if (!state.type) miss.push('[data-group="type"]');
-    if (!state.date) miss.push('[data-cal]');
-    if (!state.name) miss.push('[data-field="name"]');
+    if (!state.date && state.kind !== 'salon') miss.push('[data-cal]');
+    if (!state.name || !state.tel) miss.push('[data-field="name"]');
     miss.forEach(s => $(s).closest('.upit__step').classList.add('is-missing'));
     if (miss.length) { $(miss[0]).closest('.upit__step').scrollIntoView({ behavior: 'smooth', block: 'center' }); return false; }
     return true;
@@ -112,7 +120,7 @@
   });
   $('[data-send="mail"]').addEventListener('click', () => {
     if (!valid()) return;
-    const d = state.date, subj = 'Upit: ' + state.type + ', ' + d.getDate() + '. ' + (d.getMonth() + 1) + '. ' + d.getFullYear() + '.';
+    const d = state.date, subj = 'Upit: ' + state.type + (d ? ', ' + d.getDate() + '. ' + (d.getMonth() + 1) + '. ' + d.getFullYear() + '.' : '');
     location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(message());
   });
 })();
