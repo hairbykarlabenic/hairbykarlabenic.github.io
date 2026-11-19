@@ -383,6 +383,13 @@ body.is-ready .hero__media img { transform: scale(1.04); }
 .img-reveal.is-visible img { transform: scale(1); filter: none; }
 .img-reveal[data-delay="1"] > *, .img-reveal[data-delay="1"] img { transition-delay: .2s; }
 .img-reveal[data-delay="2"] > *, .img-reveal[data-delay="2"] img { transition-delay: .4s; }
+/* tri slike salona: otvaranje odozdo (unfold) */
+.strip .img-reveal > * { opacity: 1; clip-path: inset(100% 0 0 0); transition: clip-path 1.4s var(--ease-in-out); }
+.strip .img-reveal img { filter: none; transform: scale(1.25); transition: transform 2s var(--ease); }
+.strip .img-reveal.is-visible > * { clip-path: inset(0 0 0 0); }
+.strip .img-reveal.is-visible img { transform: scale(1); }
+.strip .img-reveal[data-delay="1"] > *, .strip .img-reveal[data-delay="1"] img { transition-delay: .15s; }
+.strip .img-reveal[data-delay="2"] > *, .strip .img-reveal[data-delay="2"] img { transition-delay: .3s; }
 
 /* parallax wrapper */
 .parallax { will-change: transform; }
@@ -794,6 +801,7 @@ body.is-ready .page-hero img { transform: scale(1.02); }
   .reveal, .split-line > span { opacity: 1 !important; transform: none !important; }
   .img-reveal > * { opacity: 1 !important; }
   .img-reveal img { filter: none !important; }
+  .strip .img-reveal > * { clip-path: none !important; }
   .img-reveal img { transform: none !important; }
   .reviews__track { animation: none !important; overflow-x: auto; }
 }
