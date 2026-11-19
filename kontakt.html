@@ -95,82 +95,63 @@
   </div>
 </section>
 
-<section class="upit" id="upit" data-upit>
-  <div class="upit__intro">
+<section class="cform" id="upit">
+  <div class="cform__head">
     <p class="eyebrow reveal">Upit</p>
     <h2 class="h-section" data-split>Pošaljite upit</h2>
-    <p class="reveal" data-delay="1">Vjenčanje, bojanje, poklon bon ili nešto sasvim drugo? Odaberite nekoliko detalja, a mi ćemo od njih složiti poruku za Karlu. Pošaljite je jednim klikom na WhatsApp ili e-mailom, a Karla će vam se javiti.</p>
+    <p class="reveal" data-delay="1">Ispunite nekoliko polja i Karla će vam se javiti. Za brzi dogovor termina slobodno nas nazovite ili pošaljite poruku na WhatsApp.</p>
   </div>
-  <div class="upit__wrap">
-    <div class="upit__steps">
-      <div class="upit__progress" aria-hidden="true"><span data-prog-text>Korak 1 od 5</span><i><b data-prog-bar></b></i></div>
-      <div class="upit__step">
-        <span class="upit__no">01</span>
-        <div><h3>S čime vam možemo pomoći?</h3>
-        <div class="chips" data-group="type">
-          <span class="chips__label">Poseban dan</span>
-          <button type="button" data-val="vjenčanje" data-kind="event" aria-pressed="false">Vjenčanje</button>
-          <button type="button" data-val="mladenkinu pratnju" data-kind="event" aria-pressed="false">Mladenkina pratnja</button>
-          <button type="button" data-val="probnu frizuru" data-kind="event" aria-pressed="false">Probna frizura</button>
-          <button type="button" data-val="svečanu priliku" data-kind="event" aria-pressed="false">Svečana prilika</button>
-          <span class="chips__label">Salon</span>
-          <button type="button" data-val="šišanje i styling" data-kind="salon" aria-pressed="false">Šišanje i styling</button>
-          <button type="button" data-val="bojanje" data-kind="salon" aria-pressed="false">Bojanje</button>
-          <button type="button" data-val="njegu kose" data-kind="salon" aria-pressed="false">Njega kose</button>
-          <button type="button" data-val="pletenice" data-kind="salon" aria-pressed="false">Pletenice</button>
-          <button type="button" data-val="poklon bon" data-kind="salon" aria-pressed="false">Poklon bon</button>
-          <button type="button" data-val="nešto drugo" data-kind="salon" aria-pressed="false">Nešto drugo</button>
-        </div></div>
-      </div>
-      <div class="upit__step">
-        <span class="upit__no">02</span>
-        <div><h3 data-date-label>Datum</h3>
-        <div class="cal" data-cal>
-          <div class="cal__head"><button type="button" data-cal-prev aria-label="Prethodni mjesec">←</button><span data-cal-title></span><button type="button" data-cal-next aria-label="Sljedeći mjesec">→</button></div>
-          <div class="cal__dow"><span>Pon</span><span>Uto</span><span>Sri</span><span>Čet</span><span>Pet</span><span>Sub</span><span>Ned</span></div>
-          <div class="cal__grid" data-cal-grid></div>
-        </div></div>
-      </div>
-      <div class="upit__step">
-        <span class="upit__no">03</span>
-        <div><h3 data-time-label>Do kada trebate biti spremni?</h3>
-        <div class="chips chips--time" data-group="time"><button type="button" data-val="07:00" aria-pressed="false">07:00</button><button type="button" data-val="08:00" aria-pressed="false">08:00</button><button type="button" data-val="09:00" aria-pressed="false">09:00</button><button type="button" data-val="10:00" aria-pressed="false">10:00</button><button type="button" data-val="11:00" aria-pressed="false">11:00</button><button type="button" data-val="12:00" aria-pressed="false">12:00</button><button type="button" data-val="13:00" aria-pressed="false">13:00</button><button type="button" data-val="14:00" aria-pressed="false">14:00</button><button type="button" data-val="15:00" aria-pressed="false">15:00</button><button type="button" data-val="16:00" aria-pressed="false">16:00</button><button type="button" data-val="17:00" aria-pressed="false">17:00</button><button type="button" data-val="još ne znam" aria-pressed="false">Još ne znam</button></div></div>
-      </div>
-      <div class="upit__step" data-event-only>
-        <span class="upit__no">04</span>
-        <div><h3>Gdje i za koliko osoba?</h3>
-        <div class="chips" data-group="loc">
-          <button type="button" data-val="u salonu" aria-pressed="false">U salonu</button>
-          <button type="button" data-val="na lokaciji" aria-pressed="false">Na lokaciji</button>
-        </div>
-        <input class="upit__input" type="text" data-field="place" data-place placeholder="Gdje se spremate? npr. hotel, Opatija" hidden>
-        <div class="stepper"><button type="button" data-step="-1" aria-label="Manje osoba">−</button><span><b data-n>1</b> osoba ukupno</span><button type="button" data-step="1" aria-label="Više osoba">+</button></div></div>
-      </div>
-      <div class="upit__step">
-        <span class="upit__no">05</span>
-        <div><h3>Kako vas možemo kontaktirati?</h3>
-        <div class="upit__row">
-          <input class="upit__input" type="text" data-field="name" placeholder="Ime" autocomplete="given-name">
-          <input class="upit__input" type="tel" data-field="tel" placeholder="Mobitel ili e-mail" autocomplete="tel">
-        </div>
-        <textarea class="upit__input" data-field="note" rows="3" placeholder="Želje, duljina kose, inspiracija…"></textarea></div>
-      </div>
-      <div class="upit__nav">
-        <button type="button" class="link-line" data-prev>Natrag</button>
-        <button type="button" class="btn" data-next>Dalje</button>
-      </div>
+  <form class="cform__form reveal" data-cform novalidate>
+    <div class="cform__grid">
+      <label class="cf"><span>Ime i prezime *</span><input name="ime" type="text" autocomplete="name" required></label>
+      <label class="cf"><span>Broj telefona *</span><input name="tel" type="tel" autocomplete="tel" required></label>
+      <label class="cf"><span>E-mail</span><input name="email" type="email" autocomplete="email"></label>
+      <label class="cf cf--select"><span>Vrsta upita *</span>
+        <select name="vrsta" required>
+          <option value="" selected disabled>Odaberite</option>
+          <optgroup label="Poseban dan">
+            <option data-event>Vjenčanje</option>
+            <option data-event>Mladenkina pratnja</option>
+            <option data-event>Probna frizura</option>
+            <option data-event>Svečana prilika</option>
+          </optgroup>
+          <optgroup label="Salon">
+            <option>Šišanje i styling</option>
+            <option>Bojanje</option>
+            <option>Njega kose</option>
+            <option>Pletenice</option>
+            <option>Poklon bon</option>
+            <option>Nešto drugo</option>
+          </optgroup>
+        </select></label>
+      <label class="cf cf--pair"><span data-date-label>Željeni datum</span><input name="datum" type="date"></label>
+      <label class="cf cf--pair cf--select"><span data-time-label>Željeno vrijeme</span>
+        <select name="vrijeme">
+          <option value="">Svejedno</option>
+          <option>Jutro (08:00 – 12:00)</option>
+          <option>Popodne (12:00 – 16:00)</option>
+          <option>Kasno popodne (16:00 – 21:00)</option>
+        </select></label>
+      <label class="cf cf--select cf--pair" data-event-only hidden><span>Gdje</span>
+        <select name="mjesto">
+          <option value="">Odaberite</option>
+          <option>U salonu</option>
+          <option>Na lokaciji</option>
+        </select></label>
+      <label class="cf cf--select cf--pair" data-event-only hidden><span>Broj osoba</span>
+        <select name="osobe">
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10 ili više</option>
+        </select></label>
+      <label class="cf cf--full"><span>Poruka *</span><textarea name="poruka" rows="5" placeholder="Opišite što želite, duljinu kose, inspiraciju…" required></textarea></label>
     </div>
-    <aside class="letter" aria-live="polite">
-      <p class="letter__eyebrow">Vaša poruka</p>
-      <p class="letter__body" data-letter></p>
-      <p class="letter__note" data-l-note hidden></p>
-      <div class="letter__actions">
-        <button type="button" class="btn" data-send="wa">Pošalji na WhatsApp</button>
-        <button type="button" class="btn btn--line" data-send="mail">Pošalji e-mailom</button>
-      </div>
-      <p class="letter__small">Podaci se ne spremaju na webu. Poruka se otvara u vašoj aplikaciji i šaljete je vi.</p>
-    </aside>
-  </div>
+    <label class="cf-check"><input type="checkbox" name="gdpr" required><span>Prihvaćam da se moji podaci koriste za odgovor na ovaj upit, u skladu s <a href="pravila-privatnosti.html">Pravilima privatnosti</a>. *</span></label>
+    <p class="cform__error" data-cform-error hidden>Molimo ispunite označena polja.</p>
+    <div class="cform__actions">
+      <button type="submit" class="btn">Pošalji upit</button>
+      <button type="button" class="btn btn--line" data-wa>Pošalji na WhatsApp</button>
+    </div>
+    <p class="cform__small">Klikom na „Pošalji upit” otvara se vaša e-mail aplikacija s već ispunjenom porukom.</p>
+  </form>
 </section>
 
 <!-- KARTA -->
