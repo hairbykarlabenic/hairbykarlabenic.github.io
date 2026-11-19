@@ -984,3 +984,26 @@ body.lightbox-open .cursor { color: #fff; }
 .chips__label { flex-basis: 100%; font-size: 9px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin: 6px 0 -2px; }
 .chips__label:not(:first-child) { margin-top: 14px; }
 .upit__step[hidden] { display: none; }
+
+/* Kontakt v2: bijela pozadina, kontakti kao veliki redovi */
+.upit { background: #fff; padding-top: clamp(40px, 6vw, 90px); }
+.upit__intro { padding-top: clamp(50px, 6vw, 90px); border-top: 1px solid var(--line); max-width: none; }
+.upit__intro > * { max-width: 640px; margin-left: auto; margin-right: auto; }
+.cal { background: #fff; border: 1px solid var(--line); }
+.letter { border: 1px solid var(--line); box-shadow: none; }
+.reach__grid { grid-template-columns: 1fr; border-top: 1px solid var(--ink); }
+.reach__tile, .reach__tile + .reach__tile { display: grid; grid-template-columns: minmax(120px, 220px) 1fr auto; align-items: baseline; gap: 20px; padding: clamp(22px, 2.6vw, 36px) 0; border-left: 0; border-bottom: 1px solid var(--line); overflow: hidden; }
+.reach__tile::before { content: ""; position: absolute; inset: 0; background: var(--ink); transform: translateY(101%); transition: transform .6s var(--ease); z-index: 0; }
+.reach__tile > * { position: relative; z-index: 1; transition: color .4s, transform .6s var(--ease); }
+.reach__v { font-size: clamp(22px, 3.2vw, 46px); font-weight: 300; letter-spacing: -.01em; line-height: 1.15; }
+.reach__arrow { position: relative; right: auto; top: auto; font-size: clamp(20px, 2vw, 28px); padding-right: 6px; }
+.reach__tile:hover::before { transform: translateY(0); }
+.reach__tile:hover > * { color: #fff; }
+.reach__tile:hover .reach__v { text-decoration: none; transform: translateX(14px); }
+.reach__tile:hover .reach__k { color: rgba(255,255,255,.6); transform: translateX(14px); }
+.reach__tile:hover .reach__arrow { transform: translateX(-14px); }
+@media (max-width: 1000px) { .reach__tile:nth-child(3) { padding-left: 0; } }
+@media (max-width: 600px) {
+  .reach__tile, .reach__tile + .reach__tile { grid-template-columns: 1fr auto; gap: 6px 14px; }
+  .reach__k { grid-column: 1 / -1; }
+}
