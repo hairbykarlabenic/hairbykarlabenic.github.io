@@ -444,6 +444,23 @@ body.is-ready .hero__media img { transform: scale(1.04); }
 .about__text .btn { margin-top: 22px; }
 .about__media { aspect-ratio: 4 / 5.3; }
 .about__media .parallax { height: 112%; margin-top: -6%; }
+.about__video { display: block; position: relative; }
+.about__video img { object-position: 50% 88%; }
+.about__play {
+  position: absolute; inset: 0; z-index: 2; display: flex; align-items: flex-start; justify-content: flex-start; gap: 14px;
+  padding: clamp(18px, 2.4vw, 30px); color: #fff; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,0) 28%);
+}
+.about__play i {
+  flex: 0 0 auto; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,.85); background: rgba(255,255,255,.12);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .6s var(--ease), background .4s;
+}
+.about__play i svg { margin-left: 3px; width: 18px; height: 18px; }
+.about__play b { line-height: 52px; font-weight: 500; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; }
+.about__video:hover .about__play i { transform: scale(1.08); background: rgba(255,255,255,.25); }
+.about__video:hover img { transform: scale(1.03); }
 .about__counter {
   display: flex; gap: 46px; margin: 30px 0 6px;
 }
