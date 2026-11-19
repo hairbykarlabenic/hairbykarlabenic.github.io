@@ -1028,3 +1028,25 @@ body.lightbox-open .cursor { color: #fff; }
 @media (max-width: 520px) {
   .reach2__list { grid-template-columns: 1fr; gap: 26px; }
 }
+
+/* Upit v3: koraci */
+.upit { padding-bottom: clamp(70px, 8vw, 120px); }
+.upit__intro { margin-bottom: clamp(36px, 4vw, 56px); }
+.upit__wrap { align-items: stretch; }
+.upit__steps { display: flex; flex-direction: column; min-height: 470px; }
+.upit__step { display: none; border-top: 0; padding: 0; animation: upitIn .5s var(--ease); }
+.upit__step.is-active { display: grid; }
+@keyframes upitIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.upit__progress { display: flex; align-items: center; gap: 18px; margin-bottom: 34px; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.upit__progress i { flex: 1; height: 1px; background: var(--line); position: relative; }
+.upit__progress b { position: absolute; left: 0; top: 0; height: 1px; background: var(--ink); transition: width .5s var(--ease); }
+.upit__nav { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 34px; }
+.upit__nav .link-line { background: none; border: 0; font: inherit; cursor: pointer; padding: 0 0 4px; }
+.upit__nav .btn[hidden] { display: none; }
+.letter { position: sticky; top: 110px; align-self: start; }
+@media (max-width: 1000px) {
+  .upit__steps { min-height: 0; }
+  .upit .letter { display: none; }
+  .upit.is-final .letter { display: block; }
+  .upit__nav { padding-top: 28px; }
+}
