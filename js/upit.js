@@ -20,14 +20,48 @@
         const ev = state.kind === 'event';
         $('[data-date-label]').textContent = ({ 'vjenčanje': 'Datum vjenčanja', 'probnu frizuru': 'Željeni datum probe' })[b.dataset.val] || (ev ? 'Datum' : 'Koji datum vam odgovara?');
         $('[data-time-label]').textContent = ev ? 'Do kada trebate biti spremni?' : 'Koje vrijeme vam odgovara?';
-        $('[data-event-only]').hidden = !ev;
-        let i = 1; $$('.upit__step').forEach(st => { if (!st.hidden) st.querySelector('.upit__no').textContent = String(i++).padStart(2, '0'); });
       }
       if (g.dataset.group === 'loc') $('[data-place]').hidden = b.dataset.val !== 'na lokaciji';
       g.closest('.upit__step').classList.remove('is-missing');
       render();
+      if (g.dataset.group === 'type' || g.dataset.group === 'time') setTimeout(() => go(1), 280);
+      else updateNav();
     });
   });
+
+
+  /* ---------- koraci ---------- */
+  const steps = $$('.upit__step');
+  let cur = 0;
+  const visible = () => steps.filter(st => !(st.hasAttribute('data-event-only') && state.kind === 'salon'));
+  const prev = $('[data-prev]'), next = $('[data-next]');
+  function canLeave(st) {
+    if (st.querySelector('[data-group="type"]') && !state.type) return false;
+    if (st.querySelector('[data-cal]') && !state.date && state.kind !== 'salon') return false;
+    return true;
+  }
+  function updateNav() {
+    const vs = visible(), i = vs.indexOf(steps[cur]), last = i === vs.length - 1;
+    steps.forEach(st => st.classList.toggle('is-active', st === steps[cur]));
+    vs.forEach((st, k) => st.querySelector('.upit__no').textContent = String(k + 1).padStart(2, '0'));
+    $('[data-prog-text]').textContent = 'Korak ' + (i + 1) + ' od ' + vs.length;
+    $('[data-prog-bar]').style.width = ((i + 1) / vs.length * 100) + '%';
+    prev.style.visibility = i === 0 ? 'hidden' : 'visible';
+    next.hidden = last;
+    const st = steps[cur];
+    next.textContent = (st.querySelector('[data-cal]') && state.kind === 'salon' && !state.date) || (st.querySelector('[data-group="time"]') && !state.time) ? 'Preskoči' : 'Dalje';
+    root.classList.toggle('is-final', last);
+  }
+  function go(d) {
+    const vs = visible(); let i = vs.indexOf(steps[cur]);
+    if (d > 0 && !canLeave(steps[cur])) { steps[cur].classList.add('is-missing'); return; }
+    i = Math.max(0, Math.min(vs.length - 1, i + d));
+    cur = steps.indexOf(vs[i]); updateNav();
+    const top = root.querySelector('.upit__wrap').getBoundingClientRect().top;
+    if (top < 0 || top > innerHeight * .6) root.querySelector('.upit__wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  prev.addEventListener('click', () => go(-1));
+  next.addEventListener('click', () => go(1));
 
   /* ---------- kalendar ---------- */
   const today = new Date(); today.setHours(0, 0, 0, 0);
@@ -50,7 +84,7 @@
       if (dt.getDay() === 6) b.classList.add('is-sat');
       if (state.date && dt.getTime() === state.date.getTime()) b.setAttribute('aria-pressed', 'true');
       b.setAttribute('aria-label', d + '. ' + MONTHS_GEN[m] + ' ' + y);
-      b.addEventListener('click', () => { state.date = dt; cal.closest('.upit__step').classList.remove('is-missing'); drawCal(); render(); });
+      b.addEventListener('click', () => { state.date = dt; cal.closest('.upit__step').classList.remove('is-missing'); drawCal(); render(); setTimeout(() => go(1), 280); });
       grid.appendChild(b);
     }
   }
@@ -91,6 +125,7 @@
     const note = $('[data-l-note]'); note.textContent = state.note; note.hidden = !state.note;
   }
   render();
+  updateNav();
 
   function message() {
     const ev = state.kind !== 'salon';
@@ -111,7 +146,7 @@
     if (!state.date && state.kind !== 'salon') miss.push('[data-cal]');
     if (!state.name || !state.tel) miss.push('[data-field="name"]');
     miss.forEach(s => $(s).closest('.upit__step').classList.add('is-missing'));
-    if (miss.length) { $(miss[0]).closest('.upit__step').scrollIntoView({ behavior: 'smooth', block: 'center' }); return false; }
+    if (miss.length) { cur = steps.indexOf($(miss[0]).closest('.upit__step')); updateNav(); return false; }
     return true;
   }
   $('[data-send="wa"]').addEventListener('click', () => {
