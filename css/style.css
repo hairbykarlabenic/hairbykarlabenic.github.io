@@ -1007,3 +1007,24 @@ body.lightbox-open .cursor { color: #fff; }
   .reach__tile, .reach__tile + .reach__tile { grid-template-columns: 1fr auto; gap: 6px 14px; }
   .reach__k { grid-column: 1 / -1; }
 }
+
+/* Kontakt v3: fotografija + tihi popis */
+.reach2 { max-width: 1320px; margin: 0 auto; padding: clamp(80px, 10vw, 150px) var(--pad); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 8vw, 130px); align-items: center; }
+.reach2__img { margin: 0; aspect-ratio: 4 / 5; overflow: hidden; }
+.reach2__img img { width: 100%; height: 100%; object-fit: cover; }
+.reach2__lead { color: var(--ink-soft); font-size: 15px; line-height: 1.8; max-width: 420px; margin: 0 0 44px; }
+.reach2__list { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 48px; margin: 0; padding-top: 34px; border-top: 1px solid var(--line); max-width: 560px; }
+.reach2__list dt { font-size: 9.5px; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-bottom: 9px; }
+.reach2__list dd { margin: 0; font-size: 14.5px; line-height: 1.75; color: var(--ink); }
+.reach2__list a { color: inherit; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .5s var(--ease); padding-bottom: 2px; }
+.reach2__list a:hover { background-size: 100% 1px; }
+.reach2__muted { color: var(--muted); font-size: 13px; }
+.reach2__list .open-now { margin-top: 6px; }
+.reach2__links { display: flex; gap: 34px; margin-top: 44px; }
+@media (max-width: 900px) {
+  .reach2 { grid-template-columns: 1fr; }
+  .reach2__img { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 520px) {
+  .reach2__list { grid-template-columns: 1fr; gap: 26px; }
+}
