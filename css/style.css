@@ -688,6 +688,24 @@ body.is-ready .page-hero img { transform: scale(1.02); }
 .page-body .btn { margin-top: 26px; }
 
 /* ==========================================================
+   POKLON BON
+   ========================================================== */
+.gift {
+  display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(40px, 7vw, 120px); align-items: center;
+  max-width: 1440px; margin: 0 auto; padding: clamp(90px, 11vw, 170px) var(--pad);
+}
+.gift__text p:not(.eyebrow) { font-size: 16px; line-height: 1.8; color: var(--ink-soft); max-width: 470px; }
+.gift__text .h-section { margin-bottom: 26px; }
+.gift__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+.gift__img { margin: 0; aspect-ratio: 4 / 5; max-width: 620px; justify-self: end; width: 100%; }
+.gift__img img { object-position: 55% 70%; }
+.page-hero img[src*="poklon-hero/"] { object-position: 62% 74%; opacity: .9; }
+@media (max-width: 900px) {
+  .gift { grid-template-columns: 1fr; }
+  .gift__img { order: -1; justify-self: stretch; max-width: none; }
+}
+
+/* ==========================================================
    PRAVNE STRANICE
    ========================================================== */
 .legal { max-width: 780px; margin: 0 auto; padding: clamp(150px, 16vw, 210px) var(--pad) clamp(70px, 9vw, 120px); }
